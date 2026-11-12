@@ -1,0 +1,11 @@
+---
+layout: null
+sitemap: false
+---
+User-agent: *
+Allow: /
+
+User-agent: Mediapartners-Google
+Allow: /
+
+Sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml

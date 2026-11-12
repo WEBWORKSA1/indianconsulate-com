@@ -1,8 +1,26 @@
-# GitHub Pages: pages are pre-built static HTML (no front matter, so they are copied as-is).
-# This file only keeps build sources and internal docs off the public site.
+# IndianConsulate.com — GitHub Pages (free plan) builds this site with its built-in Jekyll step.
+# Page sources live in build/content (rendered through _layouts/default.html); data in build/data.
+title: IndianConsulate.com
+url: "https://webworksa1.github.io"
+baseurl: "/indianconsulate-com"     # custom domain: set url to https://indianconsulate.com and baseurl to ""
+adsense_client: ca-pub-6620975821265271
+owner_link: https://web.works/contact
+includes_dir: build
+data_dir: build/data
+plugins:
+  - jekyll-sitemap
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
 exclude:
-  - build
+  - build/content
+  - build/partials
+  - build/build.py
+  - build/fetch_news.py
+  - build/make_images.py
+  - automation
   - README.md
   - PROMPTS.md
   - RESEARCH.md
-  - .github

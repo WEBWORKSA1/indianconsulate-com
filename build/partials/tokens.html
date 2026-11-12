@@ -1,0 +1,39 @@
+{%- comment -%} Shared blocks used by page sources in build/content ({{root}}, {{cta}} …). {%- endcomment -%}
+{%- assign root = site.baseurl | append: "/" -%}
+{%- assign year = site.time | date: "%Y" -%}
+{%- assign month = site.time | date: "%B %Y" -%}
+{%- assign svc_q = "" -%}{%- if page.service and page.service != "" -%}{%- assign svc_q = "?service=" | append: page.service -%}{%- endif -%}
+{%- capture cta -%}<aside class="cta-band" aria-label="Get expert help">
+  <div><p class="eyebrow">Free, no-obligation review</p>
+  <h3>Stuck on a form, a document or a deadline?</h3>
+  <p>Tell us what you need in 60 seconds. An independent consular-documentation specialist reviews your situation and replies with a clear checklist and next steps — usually within one business day.</p></div>
+  <a class="btn btn-accent btn-lg" href="{{ root }}get-help.html{{ svc_q }}">Get my free checklist →</a>
+</aside>{%- endcapture -%}
+{%- capture support -%}<aside class="support-strip"><p><strong>This guide is free and independent.</strong> Reader support pays for research, translations, contests and new tools.</p>
+<a class="btn btn-ghost" href="{{ root }}support.html">Support the project</a></aside>{%- endcapture -%}
+{%- assign missions = site.data.missions -%}
+{%- assign mission_count = missions | size -%}
+{%- assign country_count = missions | map: "country" | uniq | size -%}
+{%- assign guide_pages = site.pages | where: "kind", "guide" | sort: "order" -%}
+{%- capture guides -%}<div class="grid g3">{%- for g in guide_pages -%}<a class="card guide-card" href="{{ site.baseurl }}{{ g.url }}"><span class="tag">{{ g.tag | default: "Guide" | escape }}</span><h3>{{ g.title | escape }}</h3><p>{{ g.description | escape }}</p><span class="link-arrow">Read guide →</span></a>{%- endfor -%}</div>{%- endcapture -%}
+{%- capture guides3 -%}<div class="grid g3">{%- for g in guide_pages limit: 3 -%}<a class="card guide-card" href="{{ site.baseurl }}{{ g.url }}"><span class="tag">{{ g.tag | default: "Guide" | escape }}</span><h3>{{ g.title | escape }}</h3><p>{{ g.description | escape }}</p><span class="link-arrow">Read guide →</span></a>{%- endfor -%}</div>{%- endcapture -%}
+{%- capture related -%}<div class="grid g3">{%- assign shown = 0 -%}{%- for g in guide_pages -%}{%- if g.url != page.url and shown < 3 -%}{%- assign shown = shown | plus: 1 -%}<a class="card guide-card" href="{{ site.baseurl }}{{ g.url }}"><span class="tag">{{ g.tag | default: "Guide" | escape }}</span><h3>{{ g.title | escape }}</h3><p>{{ g.description | escape }}</p><span class="link-arrow">Read guide →</span></a>{%- endif -%}{%- endfor -%}</div>{%- endcapture -%}
+{%- capture guides_links -%}<ul>{%- for g in guide_pages -%}<li><a href="{{ site.baseurl }}{{ g.url }}">{{ g.title | escape }}</a></li>{%- endfor -%}</ul>{%- endcapture -%}
+{%- if page.src == "content/directory.html" -%}
+{%- assign regions = missions | map: "region" | uniq | sort -%}
+{%- assign ms = missions | sort: "country" -%}
+{%- capture directory -%}<div class="dir-controls">
+  <label class="sr-only" for="dirq">Search missions</label>
+  <input id="dirq" type="search" placeholder="Search a country, city or state…" autocomplete="off">
+  <label class="sr-only" for="dirr">Region</label>
+  <select id="dirr"><option value="">All regions</option>{%- for x in regions -%}<option value="{{ x | escape }}">{{ x | escape }}</option>{%- endfor -%}</select>
+  <span id="dircount" class="muted small" aria-live="polite"></span>
+</div>
+<div class="table-wrap"><table class="dir-table" id="dirtable">
+<thead><tr><th>Country</th><th>City</th><th>Mission type</th><th>Typical jurisdiction</th><th>Application centre*</th><th>Official website</th></tr></thead>
+<tbody>{%- for m in ms -%}{%- capture q -%}{{ m.country }} {{ m.city }} {{ m.type }} {{ m.covers }}{%- endcapture -%}<tr data-region="{{ m.region | escape }}" data-q="{{ q | downcase | escape }}"><td><strong>{{ m.country | escape }}</strong><br><span class="muted small">{{ m.region | escape }}</span></td><td>{{ m.city | escape }}</td><td>{{ m.type | escape }}</td><td class="small">{{ m.covers | escape }}</td><td>{% if m.provider and m.provider != "" %}{{ m.provider | escape }}{% else %}—{% endif %}</td><td>{%- if m.website and m.website != "" -%}<a href="{{ m.website }}" rel="nofollow noopener" target="_blank">{{ m.website | remove: "https://" | split: "/" | first }} ↗</a>{%- else -%}<a href="https://embassy.passportindia.gov.in/" rel="nofollow noopener" target="_blank">Find via Passport Seva ↗</a>{%- endif -%}</td></tr>{%- endfor -%}</tbody></table></div>{%- endcapture -%}
+{%- endif -%}
+{%- assign news_items = site.data.news["items"] -%}
+{%- capture news_preview -%}<ul class="news-list">{%- for it in news_items limit: 6 -%}<li class="news-item"><a href="{{ it.link | escape }}" target="_blank" rel="nofollow noopener">{{ it.title | escape }}</a><span class="muted small"> — {{ it.source | escape }}{% if it.published %} · <time datetime="{{ it.published | slice: 0, 10 }}">{{ it.published | slice: 0, 10 }}</time>{% endif %}</span></li>{%- endfor -%}</ul>{%- endcapture -%}
+{%- capture news -%}<ul class="news-list" id="newsList">{%- for it in news_items -%}<li class="news-item"><a href="{{ it.link | escape }}" target="_blank" rel="nofollow noopener">{{ it.title | escape }}</a><span class="muted small"> — {{ it.source | escape }}{% if it.published %} · <time datetime="{{ it.published | slice: 0, 10 }}">{{ it.published | slice: 0, 10 }}</time>{% endif %}</span></li>{%- endfor -%}</ul><p class="muted small">Feed last refreshed: {{ site.data.news.updated | slice: 0, 16 | replace: "T", " " }} UTC. Headlines link to the original publishers.</p>{%- endcapture -%}
+{%- capture videos -%}{%- if site.data.videos.embeds.size > 0 -%}<div class="grid g3">{%- for v in site.data.videos.embeds -%}<figure class="yt-card"><button class="yt-lite" data-yt="{{ v.id | escape }}" aria-label="Play: {{ v.title | escape }}" style="background-image:url(https://i.ytimg.com/vi/{{ v.id | escape }}/hqdefault.jpg)"><span class="yt-play" aria-hidden="true"></span></button><figcaption>{{ v.title | escape }}</figcaption></figure>{%- endfor -%}</div>{%- endif -%}<div class="grid g3">{%- for t in site.data.videos.topics -%}<a class="card video-topic" href="https://www.youtube.com/results?search_query={{ t.q | replace: ' ', '+' | escape }}" target="_blank" rel="nofollow noopener"><span class="vt-icon" aria-hidden="true">▶</span><strong>{{ t.title | escape }}</strong><span class="muted small">{{ t.desc | escape }}</span><span class="link-arrow">Watch walkthroughs on YouTube ↗</span></a>{%- endfor -%}</div>{%- endcapture -%}

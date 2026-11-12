@@ -1,0 +1,142 @@
+{%- include partials/tokens.html -%}
+{%- capture body -%}{% include {{ page.src }} %}{%- endcapture -%}
+{%- assign meta_parts = body | split: "-->" -%}{%- assign body = body | remove_first: meta_parts[0] | remove_first: "-->" -%}
+{%- assign ptype = page.type | default: "page" -%}
+{%- if page.title contains site.title -%}{%- assign full_title = page.title -%}{%- else -%}{%- assign full_title = page.title | append: " | " | append: site.title -%}{%- endif -%}
+{%- assign canon = site.url | append: site.baseurl | append: page.url -%}
+{%- assign segs = page.url | split: "/" -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ full_title | escape }}</title>
+<meta name="description" content="{{ page.description | escape }}">
+{% if page.noindex %}<meta name="robots" content="noindex,follow">{% else %}<meta name="robots" content="index,follow,max-image-preview:large">{% endif %}
+<link rel="canonical" href="{{ canon }}">
+<meta property="og:type" content="{% if ptype == 'article' %}article{% else %}website{% endif %}">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:title" content="{{ page.title | escape }}">
+<meta property="og:description" content="{{ page.description | escape }}">
+<meta property="og:url" content="{{ canon }}">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0e2a47">
+<link rel="icon" href="{{ root }}assets/img/favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="{{ root }}site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ root }}assets/css/site.css">
+<script>try{var t=localStorage.getItem("ic-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+{% unless page.ads == "no" %}<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense_client }}" crossorigin="anonymous"></script>{% endunless %}
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":{{ site.title | jsonify }},"url":{{ site.url | append: site.baseurl | append: "/" | jsonify }}}{% if ptype == "article" %},{"@context":"https://schema.org","@type":"Article","headline":{{ page.title | jsonify }},"description":{{ page.description | jsonify }},"datePublished":{{ page.published | default: "2026-11-12" | jsonify }},"dateModified":{{ site.time | date: "%Y-%m-%d" | jsonify }},"author":{"@type":"Organization","name":"IndianConsulate.com Editorial Team"},"publisher":{"@type":"Organization","name":"IndianConsulate.com"},"mainEntityOfPage":{{ canon | jsonify }}}{% endif %}]</script>
+</head>
+<body class="type-{{ ptype }}" data-root="{{ root }}">
+<a class="skip" href="#main">Skip to content</a>
+<div class="owner-strip"><div class="container"><a href="{{ site.owner_link }}" target="_blank" rel="noopener">Contact, if you are interested in this website/domain name/Sponsorship/Advertisement/Partnership</a></div></div>
+<div class="indep-bar"><div class="container"><span class="indep-dot" aria-hidden="true"></span><span><strong>Independent guide — not a government website.</strong> We are not affiliated with the Government of India, MEA or any Indian Embassy/Consulate. Official applications are made only on <em>.gov.in</em> portals. <a href="{{ root }}disclaimer.html">Details</a></span></div></div>
+<header class="site-header">
+  <div class="container hdr">
+    <a class="brand" href="{{ root }}index.html" aria-label="{{ site.title }} home">
+      <svg class="logo" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="10" fill="var(--ink)"/><path d="M13 12h4v16h-4z" fill="var(--saffron)"/><path d="M29.5 15.2A7.5 7.5 0 1 0 29.5 24.8" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round"/></svg>
+      <span class="brand-text">IndianConsulate<span class="brand-tld">.com</span><small>Independent consular services guide</small></span>
+    </a>
+    <nav class="main-nav" id="mainnav" aria-label="Main"><ul>
+      <li><a href="{{ root }}services/"{% if page.url contains '/services/' %} aria-current="page"{% endif %}>Services</a></li>
+      <li><a href="{{ root }}tools/"{% if page.url contains '/tools/' %} aria-current="page"{% endif %}>Tools</a></li>
+      <li><a href="{{ root }}directory.html"{% if page.url == '/directory.html' %} aria-current="page"{% endif %}>Consulate Finder</a></li>
+      <li><a href="{{ root }}guides/"{% if page.url contains '/guides/' %} aria-current="page"{% endif %}>Guides</a></li>
+      <li><a href="{{ root }}news.html"{% if page.url == '/news.html' %} aria-current="page"{% endif %}>News</a></li>
+      <li><a href="{{ root }}videos.html"{% if page.url == '/videos.html' %} aria-current="page"{% endif %}>Videos</a></li>
+    </ul></nav>
+    <div class="hdr-actions">
+      <button class="icon-btn" id="searchBtn" aria-label="Search the site" aria-controls="searchPanel" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+      <a class="btn btn-accent hdr-cta" href="{{ root }}get-help.html">Get help</a>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-controls="mainnav" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+  <div class="search-panel" id="searchPanel" hidden>
+    <div class="container"><label class="sr-only" for="siteSearch">Search</label>
+      <input id="siteSearch" type="search" placeholder="Search guides, services and tools — e.g. “OCI for minors”" autocomplete="off">
+      <ul id="searchResults" class="search-results" role="listbox"></ul></div>
+  </div>
+</header>
+{%- if page.url != "/" %}
+<nav class="crumbs container" aria-label="Breadcrumb"><ol><li><a href="{{ root }}index.html">Home</a></li>{% if segs.size > 2 %}<li><a href="{{ root }}{{ segs[1] }}/">{{ segs[1] | capitalize }}</a></li>{% endif %}<li aria-current="page">{{ page.crumb | default: page.title | escape }}</li></ol></nav>
+{%- endif %}
+<main id="main">
+{%- if ptype == "article" -%}
+{%- assign words = body | strip_html | number_of_words -%}
+{%- assign mins = words | divided_by: 220 | floor | at_least: 3 -%}
+<article class="container article">
+<header class="art-head">
+  <p class="eyebrow">{{ page.tag | default: "Guide" | escape }}</p>
+  <h1>{{ page.title | escape }}</h1>
+  <p class="lede">{{ page.lede | default: page.description | escape }}</p>
+  <p class="art-meta muted small">By the {{ site.title }} editorial team · Reviewed {{ month }} · {{ mins }} min read · <button class="linkish" data-share>Share</button></p>
+</header>
+<div class="art-layout">
+  <div class="prose">{{ body }}
+  <div class="verify-box"><strong>Before you apply:</strong> fees, forms and processing times change often and differ by country. Always confirm the current rules on the official portal or your mission's website. Spotted something out of date? <a href="{{ root }}contact.html?topic=correction">Send a correction</a>.</div>
+  {{ cta }}
+  </div>
+  <aside class="art-side"><nav class="toc" id="toc" aria-label="On this page" hidden><p class="eyebrow">On this page</p><ol></ol></nav>
+    <div class="side-card"><p class="eyebrow">Free tools</p><ul class="plain">
+      <li><a href="{{ root }}tools/service-finder.html">Which service do I need?</a></li>
+      <li><a href="{{ root }}tools/document-checklist.html">Build my document checklist</a></li>
+      <li><a href="{{ root }}tools/photo-checker.html">Check my photo</a></li>
+      <li><a href="{{ root }}directory.html">Find my consulate</a></li></ul></div>
+  </aside>
+</div>
+<section class="related"><h2>Keep reading</h2>{{ related }}</section>
+{{ support }}
+</article>
+<div class="slide-cta" id="slideCta" hidden><button class="slide-x" aria-label="Close">×</button><p><strong>Want a checklist for your exact case?</strong> Free, reply within 1 business day.</p><a class="btn btn-accent" href="{{ root }}get-help.html{{ svc_q }}">Get my checklist</a></div>
+{%- else -%}
+{{ body }}
+{%- endif -%}
+</main>
+<footer class="site-footer">
+  <div class="container foot-grid">
+    <div>
+      <a class="brand brand-foot" href="{{ root }}index.html">IndianConsulate<span class="brand-tld">.com</span></a>
+      <p class="small">An independent, reader-supported guide to Indian consular services worldwide: passports, OCI, visas, surrender certificates, attestation and emergencies.</p>
+      <form class="newsletter" data-form="newsletter" novalidate>
+        <label for="nl-email" class="small"><strong>Rule-change alerts</strong> — one short email when fees or processes change.</label>
+        <div class="nl-row"><input id="nl-email" type="email" name="email" placeholder="you@example.com" required><button class="btn btn-accent" type="submit">Subscribe</button></div>
+      </form>
+    </div>
+    <div><h4>Services</h4><ul>
+      <li><a href="{{ root }}services/oci.html">OCI card</a></li><li><a href="{{ root }}services/passport.html">Passport renewal</a></li>
+      <li><a href="{{ root }}services/visa.html">Visa &amp; e-Visa</a></li><li><a href="{{ root }}services/renunciation.html">Surrender certificate</a></li>
+      <li><a href="{{ root }}services/attestation.html">Attestation &amp; apostille</a></li><li><a href="{{ root }}services/pcc.html">Police clearance</a></li>
+      <li><a href="{{ root }}services/emergency.html">Emergencies</a></li><li><a href="{{ root }}services/nri-services.html">NRI services</a></li></ul></div>
+    <div><h4>Free tools</h4><ul>
+      <li><a href="{{ root }}tools/service-finder.html">Service finder</a></li><li><a href="{{ root }}tools/oci-eligibility.html">OCI eligibility check</a></li>
+      <li><a href="{{ root }}tools/document-checklist.html">Document checklist</a></li><li><a href="{{ root }}tools/photo-checker.html">Photo checker</a></li>
+      <li><a href="{{ root }}tools/travel-planner.html">Passport &amp; trip planner</a></li><li><a href="{{ root }}directory.html">Consulate finder</a></li></ul></div>
+    <div><h4>Community</h4><ul>
+      <li><a href="{{ root }}get-help.html">Get expert help</a></li><li><a href="{{ root }}support.html">Support us / donate</a></li>
+      <li><a href="{{ root }}contests.html">Contests &amp; prizes</a></li><li><a href="{{ root }}careers.html">Careers &amp; contributors</a></li>
+      <li><a href="{{ root }}advertise.html">Advertise &amp; partner</a></li><li><a href="{{ root }}contact.html">Contact</a></li></ul></div>
+    <div><h4>About</h4><ul>
+      <li><a href="{{ root }}about.html">About us</a></li><li><a href="{{ root }}editorial-policy.html">Editorial policy</a></li>
+      <li><a href="{{ root }}faq.html">FAQ</a></li><li><a href="{{ root }}privacy.html">Privacy policy</a></li>
+      <li><a href="{{ root }}terms.html">Terms of use</a></li><li><a href="{{ root }}disclaimer.html">Disclaimer &amp; trademarks</a></li><li><a href="{{ root }}sitemap.html">Sitemap</a></li></ul></div>
+  </div>
+  <div class="container legal">
+    <p><strong>Independent publication.</strong> {{ site.title }} is a privately operated information service. It is <strong>not</strong> an official website of, and is not endorsed by, the Government of India, the Ministry of External Affairs, the Ministry of Home Affairs, any Indian Embassy, High Commission or Consulate, or any outsourced service provider. We do not issue passports, visas, OCI cards or certificates, and we never collect government fees. Government names are used only to describe services factually. All third-party trademarks belong to their respective owners. We do not use the State Emblem of India or any official insignia.</p>
+    <p>© <span data-year>{{ year }}</span> {{ site.title }}. Original text, graphics and tools are protected by copyright. Information is general guidance, not legal advice — always confirm with the official source before you apply.</p>
+  </div>
+</footer>
+<a class="mobile-cta" href="{{ root }}get-help.html">Get a free document checklist →</a>
+<div class="cookie" id="cookie" hidden role="dialog" aria-label="Cookie notice">
+  <p>We use cookies for essential functions, analytics and Google AdSense advertising, which may personalise ads. See our <a href="{{ root }}privacy.html">privacy policy</a>.</p>
+  <div><button class="btn btn-ghost" data-consent="essential">Essential only</button><button class="btn btn-accent" data-consent="all">Accept all</button></div>
+</div>
+<script src="{{ root }}assets/js/config.js"></script>
+<script src="{{ root }}assets/js/main.js" defer></script>
+<script src="{{ root }}assets/js/extra.js" defer></script>
+{% if ptype == "tool" or ptype == "toolhub" %}<script src="{{ root }}assets/js/tools.js" defer></script>{% endif %}
+</body>
+</html>
