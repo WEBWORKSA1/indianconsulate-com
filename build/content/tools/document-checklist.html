@@ -1,0 +1,21 @@
+<!--meta
+title: Document Checklist Builder — OCI, Passport, Visa, PCC & More
+crumb: Document checklist
+description: Build a tick-box document checklist for OCI, Indian passport renewal, surrender certificate, PCC, e-Visa, emergency certificate or attestation. Saves your progress and prints to PDF.
+keywords: oci document checklist, indian passport renewal documents, surrender certificate documents, pcc documents indian embassy
+type: tool
+-->
+<section class="section-tight"><div class="container tool-wrap">
+<p class="eyebrow">Free tool</p><h1>Document checklist builder</h1>
+<p class="lede muted">Pick your service and situation. Tick items off as you collect them — your progress is saved on this device.</p>
+<form class="tool-panel" id="docForm" onsubmit="return false">
+  <div class="field"><label for="svc">Service</label><select id="svc" name="svc"></select></div>
+  <fieldset class="field"><legend>My situation <span class="hint">(tick any that apply)</span></legend>
+    <label class="check"><input type="checkbox" name="namechg"> My name differs between documents (marriage, spelling, surname)</label>
+    <label class="check"><input type="checkbox" name="lostold"> An old passport or card is lost</label>
+    <label class="check"><input type="checkbox" name="proxy"> Someone else will submit for me</label>
+    <label class="check"><input type="checkbox" name="translate"> Some documents aren’t in English</label>
+  </fieldset>
+  <div id="docOut" aria-live="polite"></div>
+</form>
+</div></section>

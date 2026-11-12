@@ -1,0 +1,27 @@
+<!--meta
+title: OCI & India e-Visa Photo Checker — Size, Shape, Background
+crumb: Photo checker
+description: Check your OCI or Indian e-Visa photo before uploading — square shape, pixel dimensions, file size, JPEG format and background brightness. Runs privately in your browser.
+keywords: oci photo size, oci photo checker, india e-visa photo requirements, indian passport photo 2x2, oci photo 200x200 500kb
+type: tool
+-->
+<section class="section-tight"><div class="container tool-wrap">
+<p class="eyebrow">Free tool</p><h1>Photo checker</h1>
+<p class="lede muted">Photo problems are one of the most common reasons uploads fail. Test yours in seconds — the image never leaves your device.</p>
+<form class="tool-panel" id="photoForm" onsubmit="return false">
+  <fieldset class="field"><legend>Check against</legend><div class="choice-grid">
+    <label class="choice"><input type="radio" name="preset" value="oci" checked><span>OCI upload</span></label>
+    <label class="choice"><input type="radio" name="preset" value="evisa"><span>India e-Visa upload</span></label>
+    <label class="choice"><input type="radio" name="preset" value="print"><span>Printed 2×2 in (passport)</span></label></div></fieldset>
+  <div class="field"><label for="photo">Choose a photo</label><input id="photo" name="photo" type="file" accept="image/*"></div>
+  <div id="photoOut" aria-live="polite"></div>
+</form>
+<h2>Photo rules that trip people up</h2>
+<ul>
+<li><strong>Square only.</strong> Online OCI and e-Visa uploads expect equal width and height.</li>
+<li><strong>Plain, light background</strong> with no shadows behind the head.</li>
+<li><strong>File limits.</strong> Portals set minimum and maximum dimensions and file sizes — commonly cited for OCI uploads are at least 200×200 px and no more than 500 KB, in JPEG.</li>
+<li><strong>Printed photos</strong> for passport applications abroad are usually 2×2 inches (51×51 mm) on a white background.</li>
+</ul>
+<p class="small muted">Specifications can change and vary by mission. The portal you upload to has the final say.</p>
+</div></section>

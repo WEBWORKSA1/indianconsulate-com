@@ -1,0 +1,25 @@
+<!--meta
+title: Passport Validity & Consular Application Planner
+crumb: Passport & trip planner
+description: Check whether your passport is valid long enough for your trip, find the latest date to start your OCI, passport, e-Visa or surrender application, and download calendar reminders.
+keywords: passport validity 6 months india, when to renew indian passport, oci processing time planner, e-visa how early to apply
+type: tool
+-->
+<section class="section-tight"><div class="container tool-wrap">
+<p class="eyebrow">Free tool</p><h1>Passport &amp; trip planner</h1>
+<p class="lede muted">Enter your dates. We’ll flag validity problems, work out a start-by date with a sensible buffer, and give you calendar reminders.</p>
+<form class="tool-panel" id="tripForm">
+  <div class="row2"><div class="field"><label for="expiry">Passport expiry date</label><input id="expiry" name="expiry" type="date" required></div>
+  <div class="field"><label for="depart">Departure date</label><input id="depart" name="depart" type="date" required></div></div>
+  <div class="field"><label for="days">Trip length (days)</label><input id="days" name="days" type="number" min="1" max="3650" value="21"></div>
+  <fieldset class="field"><legend>What do you still need before travelling?</legend><div class="choice-grid">
+    <label class="choice"><input type="radio" name="need" value="none" checked><span>Nothing</span></label>
+    <label class="choice"><input type="radio" name="need" value="evisa"><span>India e-Visa</span></label>
+    <label class="choice"><input type="radio" name="need" value="oci"><span>OCI</span></label>
+    <label class="choice"><input type="radio" name="need" value="passport"><span>Indian passport re-issue</span></label>
+    <label class="choice"><input type="radio" name="need" value="surrender"><span>Surrender certificate</span></label>
+    <label class="choice"><input type="radio" name="need" value="pcc"><span>PCC</span></label></div></fieldset>
+  <button class="btn btn-accent btn-lg" type="submit">Plan it</button>
+  <div id="tripOut" aria-live="polite"></div>
+</form>
+</div></section>

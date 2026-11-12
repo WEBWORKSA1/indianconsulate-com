@@ -1,0 +1,28 @@
+<!--meta
+title: OCI Eligibility Checker — Am I Eligible for an OCI Card? (2026)
+crumb: OCI eligibility check
+description: Free 60-second OCI eligibility check based on the published grounds — Indian origin, spouse of an Indian citizen or OCI, exclusions — plus what to do next.
+keywords: oci eligibility, am i eligible for oci, oci eligibility spouse, oci grandparent indian, oci pakistan bangladesh exclusion
+type: tool
+-->
+<section class="section-tight"><div class="container tool-wrap">
+<p class="eyebrow">Free tool</p><h1>OCI eligibility check</h1>
+<p class="lede muted">Six yes/no questions. You’ll get an instant, plain-English answer and the documents to start gathering.</p>
+<form class="tool-panel" id="ociElig">
+  <fieldset class="field"><legend>1. Are you currently a citizen of a country other than India?</legend><div class="choice-grid">
+    <label class="choice"><input type="radio" name="foreign" value="yes" required><span>Yes</span></label><label class="choice"><input type="radio" name="foreign" value="no"><span>No — I’m only an Indian citizen</span></label></div></fieldset>
+  <fieldset class="field"><legend>2. Were you, a parent, grandparent or great-grandparent ever an Indian citizen (on/after 26 Jan 1950), or from territory that became part of India after 1947?</legend><div class="choice-grid">
+    <label class="choice"><input type="radio" name="root" value="yes" required><span>Yes</span></label><label class="choice"><input type="radio" name="root" value="no"><span>No / not sure</span></label></div></fieldset>
+  <fieldset class="field"><legend>3. Are you married to an Indian citizen or OCI cardholder, with a registered marriage of 2+ years?</legend><div class="choice-grid">
+    <label class="choice"><input type="radio" name="spouse" value="yes" required><span>Yes</span></label><label class="choice"><input type="radio" name="spouse" value="no"><span>No</span></label></div></fieldset>
+  <fieldset class="field"><legend>4. Are or were you, or any parent/grandparent/great-grandparent, a citizen of Pakistan or Bangladesh?</legend><div class="choice-grid">
+    <label class="choice"><input type="radio" name="pakbd" value="yes" required><span>Yes</span></label><label class="choice"><input type="radio" name="pakbd" value="no"><span>No</span></label></div></fieldset>
+  <fieldset class="field"><legend>5. Are you serving in, or retired from, a foreign military?</legend><div class="choice-grid">
+    <label class="choice"><input type="radio" name="military" value="yes" required><span>Yes</span></label><label class="choice"><input type="radio" name="military" value="no"><span>No</span></label></div></fieldset>
+  <fieldset class="field"><legend>6. Have you ever held an Indian passport?</legend><div class="choice-grid">
+    <label class="choice"><input type="radio" name="prevIndian" value="yes" required><span>Yes</span></label><label class="choice"><input type="radio" name="prevIndian" value="no"><span>No</span></label></div></fieldset>
+  <button class="btn btn-accent btn-lg" type="submit">Check my eligibility</button>
+  <div id="oeOut" aria-live="polite"></div>
+</form>
+<p class="small muted">Informal screening based on the publicly listed grounds in the <a href="{{root}}services/oci.html">OCI guide</a>. It is not a legal determination.</p>
+</div></section>

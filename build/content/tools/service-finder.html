@@ -1,0 +1,33 @@
+<!--meta
+title: Which Indian Consular Service Do I Need? — Service Finder
+crumb: Service finder
+description: Answer two questions and find out exactly which Indian consular service you need — OCI, passport re-issue, e-Visa, surrender certificate, attestation, PCC or emergency help.
+keywords: which indian visa do i need, do i need oci or visa, indian consular service finder
+type: tool
+-->
+<section class="section-tight"><div class="container tool-wrap">
+<p class="eyebrow">Free tool</p><h1>Service finder</h1>
+<p class="lede muted">Consular jargon is confusing. Tell us who you are and what you want to do — we’ll point you to the right process and the official portal.</p>
+<form class="tool-panel" id="serviceFinder">
+  <fieldset class="field"><legend>1. Which best describes you?</legend>
+  <div class="choice-grid">
+    <label class="choice"><input type="radio" name="who" value="indian" required><span>🇮🇳 Indian citizen (Indian passport)</span></label>
+    <label class="choice"><input type="radio" name="who" value="origin"><span>🌍 Foreign citizen of Indian origin, no OCI yet</span></label>
+    <label class="choice"><input type="radio" name="who" value="oci"><span>🪪 Foreign citizen with an OCI</span></label>
+    <label class="choice"><input type="radio" name="who" value="foreign"><span>✈️ Foreign citizen, not of Indian origin</span></label>
+  </div></fieldset>
+  <fieldset class="field"><legend>2. What do you want to do?</legend>
+  <div class="choice-grid">
+    <label class="choice"><input type="radio" name="goal" value="travel" required><span>Travel to India</span></label>
+    <label class="choice"><input type="radio" name="goal" value="renew"><span>Renew / replace an Indian passport</span></label>
+    <label class="choice"><input type="radio" name="goal" value="citizenship"><span>Give up / record loss of Indian citizenship</span></label>
+    <label class="choice"><input type="radio" name="goal" value="docs"><span>Get documents attested / a PCC</span></label>
+    <label class="choice"><input type="radio" name="goal" value="emergency"><span>Handle an emergency</span></label>
+    <label class="choice"><input type="radio" name="goal" value="nri"><span>NRI paperwork (pension, PAN, voting)</span></label>
+  </div></fieldset>
+  <button class="btn btn-accent btn-lg" type="submit">Show my service</button>
+  <div id="sfOut" aria-live="polite"></div>
+</form>
+<h2>How the finder works</h2>
+<p>The finder maps your citizenship status and goal to the consular service that applies. It follows the basic rules: Indian citizens use Indian passports; foreign citizens need a visa or OCI; former Indian citizens need a surrender certificate before an OCI. Edge cases — dual-nationality children, lost documents, old PIO cards — are where a <a href="{{root}}get-help.html">free specialist review</a> helps most.</p>
+</div></section>
