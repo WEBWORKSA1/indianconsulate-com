@@ -1,0 +1,8 @@
+# GitHub Pages: pages are pre-built static HTML (no front matter, so they are copied as-is).
+# This file only keeps build sources and internal docs off the public site.
+exclude:
+  - build
+  - README.md
+  - PROMPTS.md
+  - RESEARCH.md
+  - .github
